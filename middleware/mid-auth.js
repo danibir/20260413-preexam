@@ -20,7 +20,7 @@ const auth = async (req, res, next) => {
 const authAdmin = async (req, res, next) => {
     const token = req.cookies?.user
     const username = jwt.verify(token, process.env.secretKey).username
-    const user = await User.findOne({ username: username })
+    const user = await User.userExists(username)
     if (!user || user.isAdmin == false) {
         return res.redirect('/')
     }

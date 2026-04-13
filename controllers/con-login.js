@@ -32,12 +32,10 @@ const signup_post = async (req, res) => {
     const username = req.body.username
     const password = req.body.password
     const key = req.body.key
-    console.log('entered signup')
     try {
+        console.log(!(await User.userExists(username)))
         if (key === process.env.authKey || key === process.env.adminKey) 
         if (!(await User.userExists(username))) {
-            
-            console.log('entered key')
             const userObj = {
                 username: username,
                 password: password,
@@ -48,7 +46,7 @@ const signup_post = async (req, res) => {
             const login = await login_perform(res, username, password)
             if (login) return res.redirect('/')
         }
-        res.redirect('./login')
+        res.redirect('./sign-up')
     } catch(err) {
         console.log(`Sign-up post error: ${err}`)
         res.redirect('./sign-up')
@@ -71,7 +69,7 @@ const login_perform = async (res, username, password) => {
         const token = jwt.sign({ username }, process.env.secretKey, { expiresIn: '120m' })
         res.cookie('user', token, { httpOnly: true, sameSite: 'strict'})
         console.log('login success')
-        return token
+        return login
     } catch (err) {
         throw new Error(`Login perform error: ${err}`)
     }

@@ -22,7 +22,7 @@ const userSchema = new Schema({
 })
 
 //hmac hash
-const SECRET = process.env.secretKey
+const SECRET = "super-secret"//process.env.secretKey
 
 function hashUsername(username) {
     return crypto
