@@ -22,7 +22,7 @@ Dette er en norsk webapplikasjon der brukere(ansatte) kan anmelde avviksmeldinge
 ## Driftplan
 
 | Name          | Ip Address    | Role                  |
-|---------------|---------------|-------------------|---|
+|---------------|---------------|-----------------------|
 | preexam-dev   | 10.12.15.80   | Development server    |
 | preexam-pub   | 10.12.15.81   | Production server     |
 | preexam-db    | 10.12.15.82   | Database server       |
@@ -83,7 +83,7 @@ Svar
 ```bash
 #For å clone repo-et
 git clone https://github.com/danibir/20260413-preexam
-cd 20260223-vurderapage-dummyexam
+cd 20260413-preexam
 npm i
 
 #For å starte programmet
