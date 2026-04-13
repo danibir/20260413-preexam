@@ -5,7 +5,7 @@ const User = require('../models/mod-user')
 const auth = async (req, res, next) => {
     const token = req.cookies?.user
     if (token) {
-        const payload = jwt.verify(token, process.env.secretKey)
+        const payload = jwt.verify(token, "my_jwt_secret_for_now")
         const user = await User.findOne({ username: payload.username })
         if (!user || user.isAdmin == false) {
             res.locals.name = ""
@@ -19,7 +19,7 @@ const auth = async (req, res, next) => {
 }
 const authAdmin = async (req, res, next) => {
     const token = req.cookies?.user
-    const username = jwt.verify(token, process.env.secretKey).username
+    const username = jwt.verify(token, "my_jwt_secret_for_now").username
     const user = await User.userExists(username)
     if (!user || user.isAdmin == false) {
         return res.redirect('/')
