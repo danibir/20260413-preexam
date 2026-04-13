@@ -26,7 +26,6 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(morgan('dev'))
 app.use(cookieParser())
-app.use(mid_auth.auth)
 
 //Connecting to db and starting server
 
@@ -40,8 +39,9 @@ db.connectToMongoDb()
     console.log('Database connection failure.')
 })
 .finally(()=>{
-    app.use('/', router_main) 
     app.use('/login', router_login)
+    app.use(mid_auth.auth)
+    app.use('/', router_main) 
     app.use('/admin', router_admin)
     
     
