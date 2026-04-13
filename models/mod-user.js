@@ -1,5 +1,6 @@
-const mongoose = require("mongoose")
 const argon2 = require('argon2')
+const crypto = require("crypto")
+const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
 //define schema
@@ -21,7 +22,6 @@ const userSchema = new Schema({
 })
 
 //hmac hash
-const crypto = require("crypto");
 const SECRET = process.env.secretKey
 
 function hashUsername(username) {
@@ -33,28 +33,30 @@ function hashUsername(username) {
 
 //hash everything
 userSchema.pre('save', async function () {
-    if (this.isModified('username') && this.isAdmin == false) {
+    if (this.isModified('username')) {
         this.username = hashUsername(this.username)
     }
     if (this.isModified('password')) {
         this.password = await argon2.hash(this.password)
     }
 })
-//login w both admin and user logic
-userSchema.statics.login = async(username, password, admin) => {
-    let name = username
-    
-    let user = await User.findOne({ username: name })
-    if (!user || user.isAdmin == false) {
-        name = hashUsername(username)
-        user = await User.findOne({username: name })
-    }
-    if(!user) throw Error("Login fail.")
+//login
+userSchema.statics.login = async(username, password) => {
+    const name = hashUsername(username)
+    const user = await User.findOne({ username: name })
+    if(!user) return
     
     const valid = await argon2.verify(user.password, password)
-    if (!valid) throw Error("Login fail.")
-    
+    if (!valid) return
+        
     return user
+}
+userSchema.statics.userExists = async(username) => {
+    const name = hashUsername(username)
+    const user = await User.findOne({ username: name })
+    if(!user) return
+
+    return !!user
 }
 
 //export
