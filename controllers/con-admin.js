@@ -1,6 +1,10 @@
 
-const index_get = (req, res) => {
-    res.render('adminmain')
+const Report = require('../models/mod-report')
+
+
+const index_get = async (req, res) => {
+    const reports = await Report.find()
+    res.render('admin', { reports })
 }
 
 module.exports = {

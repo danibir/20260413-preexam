@@ -25,3 +25,6 @@ const reportSchema = new Schema({
         default: []
     }
 })
+
+const Report = mongoose.model('Report', reportSchema, 'reports')
+module.exports = Report

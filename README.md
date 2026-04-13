@@ -61,14 +61,16 @@ Tiltak:
 - - Svært enkel webside utforming
 - - Planleggingsdokument
 - - - (Om system, Funksjonelle krav, Driftplan, Risiko analyse, Tidsestimat, Kommunikasjonsplan)
-- Backend-utvikling: 1,5 timer...
+- Backend-utvikling: 10 timer...
+- - #### Hensikt
 - - Grunnlegende bruker funksjoner (login, signup, osv)
 - - Hashing av passord og non-admin brukere
-- - 
+- - Modelstruktur av brukere og anmeldelser
+- - Autentisering og autorisering   
 - - (...)
 - Frontend-utvikling: ...
 - Annet: ... 
-### Total utviklingstid:  3.5 timer...
+### Total utviklingstid:  12 timer...
 
 ## Kommunikasjonsplan
 
@@ -89,7 +91,12 @@ Svar
 git clone https://github.com/danibir/20260413-preexam
 cd 20260413-preexam
 npm i
-
+```
+```bash
+#For å opdatere repoet
+git fetch && git pull && npm i && pm2 restart
+```
+```bash
 #For å starte programmet
 nodemon app.js
 ```

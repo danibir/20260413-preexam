@@ -13,7 +13,6 @@ const m_auth = require('../middleware/mid-auth')
 
 router.get('/', m_auth.auth,  c_main.index_get)
 
-
 //export
 
 module.exports = router

@@ -11,6 +11,7 @@ const mid_main = require('./middleware/mid-main')
 const mid_auth = require('./middleware/mid-auth')
 
 const router_main = require('./routers/rou-main')
+const router_report = require('./routers/rou-report')
 const router_login = require('./routers/rou-login')
 const router_admin = require('./routers/rou-admin')
 
@@ -42,6 +43,7 @@ db.connectToMongoDb()
     app.use('/login', router_login)
     app.use(mid_auth.auth)
     app.use('/', router_main) 
+    app.use('/report', router_report)
     app.use('/admin', router_admin)
     
     

@@ -1,0 +1,5 @@
+<%- include('./partials/head') %>
+<h1>Admin</h1>
+<% for( report of reports ) { %>
+    <a href="/report/view/<%= report._id %>"><%= report.title %></a>
+<% } %>
