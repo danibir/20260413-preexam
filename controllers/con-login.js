@@ -66,7 +66,7 @@ const login_perform = async (res, username, password) => {
         const login = await User.login(username, password)
         if (!login) return
 
-        const token = jwt.sign({ username }, process.env.secretKey, { expiresIn: '120m' })
+        const token = jwt.sign({ username }, "my_jwt_secret_for_now", { expiresIn: '120m' })
         res.cookie('user', token, { httpOnly: true, sameSite: 'strict'})
         console.log('login success')
         return login
