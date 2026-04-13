@@ -14,7 +14,7 @@ const auth = async (req, res, next) => {
         }
         next()
     } else {
-        return res.redirect("/login")
+        return res.redirect("/login/login")
     }
 }
 const authAdmin = async (req, res, next) => {
