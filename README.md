@@ -54,17 +54,21 @@ Tiltak:
 
 ## Tidsestimat
 
-# Tidfrist:             48 timer
+### Tidfrist:             48 timer
 - Planlegging før prosjekt: 2 timer
-- - # Avklare krav, avgrense funksjonalitet og sikre felles forståelse av prosjektets mål.
+- - #### Avklare krav, avgrense funksjonalitet og sikre felles forståelse av prosjektets mål.
 - - Gjennomgang av oppgavetekst og vurderings kriterier
 - - Svært enkel webside utforming
 - - Planleggingsdokument
 - - - (Om system, Funksjonelle krav, Driftplan, Risiko analyse, Tidsestimat, Kommunikasjonsplan)
-- Backend-utvikling: ...
+- Backend-utvikling: 1,5 timer...
+- - Grunnlegende bruker funksjoner (login, signup, osv)
+- - Hashing av passord og non-admin brukere
+- - 
+- - (...)
 - Frontend-utvikling: ...
 - Annet: ... 
-# Total utviklingstid:  2 timer...
+### Total utviklingstid:  3.5 timer...
 
 ## Kommunikasjonsplan
 

@@ -8,11 +8,11 @@ const login_get = (req, res) => {
 }
 
 //login post logic
-const login_post = (req, res) => {
+const login_post = async (req, res) => {
     const username = req.body.username
     const password = req.body.password
     try {
-        login_perform(res, username, password)
+        await login_perform(res, username, password)
     } catch (err) {
         console.log(`Login post error: ${err}`)
     }
@@ -30,12 +30,14 @@ const signup_post = async (req, res) => {
     const key = req.body.key
     console.log('entered signup')
     try {
-        if(key === process.env.authKey) {
+        if(key === process.env.authKey || key === process.env.adminKey) {
             console.log('entered key')
-            const user = new User({
+            const userObj = {
                 username: username,
                 password: password
-            })
+            }
+            if (key === process.env.adminKey) userObj.isAdmin = true
+            const user = new User(userObj)
             await user.save()
             await login_perform(res, username, password)
             console.log('entered login')
@@ -47,7 +49,7 @@ const signup_post = async (req, res) => {
 
 //log out
 const logout_post = (req, res) => {
-    res.clearCookie('accessToken')
+    res.clearCookie('user')
     res.redirect('/login/login')
 }
 
@@ -55,9 +57,9 @@ const logout_post = (req, res) => {
 //login handler
 const login_perform = async (res, username, password) => {
     try {
-        const userId = await User.login(username, password)
-        const token = jwt.sign({ username }, 'your_jwt_secret', { expiresIn: '120m' })
-        res.cookie('accessToken', token, { httpOnly: true, sameSite: 'strict'})
+        await User.login(username, password)
+        const token = jwt.sign({ username }, process.env.secretKey, { expiresIn: '120m' })
+        res.cookie('user', token, { httpOnly: true, sameSite: 'strict'})
         console.log('signup successful')
         res.redirect('/')
     } catch (err) {

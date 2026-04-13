@@ -13,14 +13,16 @@ const userSchema = new Schema({
         type: String,
         required: true,
         minLength: 8
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false
     }
 })
 
 //hmac hash
 const crypto = require("crypto");
 const SECRET = process.env.secretKey
-
-console.log(SECRET)
 
 function hashUsername(username) {
     return crypto
@@ -31,22 +33,28 @@ function hashUsername(username) {
 
 //hash everything
 userSchema.pre('save', async function () {
-    if (this.isModified('username')) {
+    if (this.isModified('username') && this.isAdmin == false) {
         this.username = hashUsername(this.username)
     }
     if (this.isModified('password')) {
         this.password = await argon2.hash(this.password)
     }
 })
-userSchema.statics.login = async(username, password)=>{
-    const hashedusername = hashUsername(username)
-    const user = await User.findOne({username: hashedusername })
+//login w both admin and user logic
+userSchema.statics.login = async(username, password, admin) => {
+    let name = username
+    
+    let user = await User.findOne({ username: name })
+    if (!user || user.isAdmin == false) {
+        name = hashUsername(username)
+        user = await User.findOne({username: name })
+    }
     if(!user) throw Error("Login fail.")
     
     const valid = await argon2.verify(user.password, password)
     if (!valid) throw Error("Login fail.")
     
-    return user._id
+    return user
 }
 
 //export
