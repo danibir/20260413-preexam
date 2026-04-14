@@ -16,6 +16,7 @@ const index_get = async (req, res) => {
             {tags: { $size: 0 } }
         ]})
         if (!querytags.includes('søppelpost')) reports = reports.filter(item => !item.tags.includes('søppelpost'))
+        if (querytags.includes('søppelpost')) reports = reports.filter(item => item.tags.includes('søppelpost'))
 
         reports = reports.sort((itemA, itemB) => {
             const aHasTags = (itemA.tags && itemA.tags.length > 0)

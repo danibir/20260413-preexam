@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken')
 const Report = require('../models/mod-report')
 const cons = require('../js/constant')
 
@@ -48,10 +49,23 @@ const edit_post = async (req, res) => {
 
     const status = req.body.status
     const tags = req.body.tags
+    let note = req.body.note
+    const contributor = jwt.verify(req.cookies?.user, "my_jwt_secret_for_now").username
+    
     if (!status || !tags) return res.status(400).render('error', { error: "400 - Missing fields"})
     
     try {
-        await Report.findByIdAndUpdate(id, { status, tags })
+        const report = await Report.findById(id)
+        if (!report) return res.status(404).render('error', { error: "404 - Report not found" })
+        if (note) {
+            const newNote = `${note}\r\n\r\n- ${res.locals.name}`
+            report.notes.push(newNote)
+        }
+        report.status = status
+        report.tags = tags
+        if (!report.contributors.includes(contributor)) report.contributors.push(contributor)
+        
+        await report.save()
         return res.redirect('/admin')
     } catch (err) {
         return res.status(500).render('error', { error: "500 - Server error"})

@@ -5,5 +5,12 @@
 
 <div>
     <h2><%= report.title %></h2>
-    <p><%= report.content %></p>
+    <h3><%= report.status %></h3>
+    <p><%- report.content.replace(/\r?\n/g, '<br>') %></p>
+    <% for(tag of report.tags) { %>
+        <h6><%= tag %></h6>
+    <% } %>
+    <% for(note of report.notes) { %>
+        <p><%- note.replace(/\r?\n/g, '<br>') %></p>
+    <% } %>
 </div>

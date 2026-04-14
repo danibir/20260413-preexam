@@ -23,6 +23,10 @@ const reportSchema = new Schema({
     notes: {
         type: Array,
         default: []
+    },
+    contributors: {
+        type: Array,
+        default: []
     }
 })
 
