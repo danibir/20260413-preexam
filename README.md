@@ -34,21 +34,34 @@ Løsningen består av tre maskiner. (...)
 
 Mulige trusler:
 - Uautorisert tilgang til database 
-- - Middels konsekvens
+- - Middels sannsynlighet
+- - Middels alvorlighet
 - - Middels risiko
 - Svikt i brukerens anonymitet
-- - Stor konsekvens
+- - Middels sannsynlighet
+- - Stor alvorlighet
 - - Stor risiko 
+- Spam kontoer i systemet
+- - Stor sannsynlighet
+- - Lav alvorlighet
+- - Lav risiko
+- Uautoritisert oppdanning av administratorer
+- - Stor sannsynlighet
+- - Middels alvorlighet
+- - Middels risiko
 - Feilkonfigurerte brannmurregler
+- - Middels konsekvens
 - - Middels konsekvens
 - - Stor risiko
 - Tap av data uten backup
+- - Lav sannsynlighet
 - - Middels konsekvens
-- - Lav risiko
+- - Middels risiko
 
 Tiltak:
 - Segmentert nettverk
 - Hashing av brukernavn og ekskludering av kilde fra input
+- Bruk av "keys" til å lage brukere
 - Tilgangskontroll og admin‑autorisering
 - Regelmessige sikkerhetskopier
 
@@ -63,15 +76,17 @@ Tiltak:
 - - Planleggingsdokument
 - - - (Om system, Funksjonelle krav, Driftplan, Risiko analyse, Tidsestimat, Kommunikasjonsplan)
 
-- Backend-utvikling: 12 timer...
+- Backend-utvikling: 16 timer
 - - #### Hensikt
 - - Grunnlegende bruker funksjoner (login, signup, osv)
 - - Hashing av passord og non-admin brukere
 - - Modelstruktur av brukere og anmeldelser
-- - Autentisering og autorisering   
+- - Autentisering og autorisering
+- - Keygenering til nye brukere og administratorer
 - - (...)
 
-- Frontend-utvikling: ...
+- Frontend-utvikling: ..
+- - ### Hensikt
 
 - Drift, protocoler og brannmur: 3 timer...
 - - ### Hensikt
@@ -79,9 +94,12 @@ Tiltak:
 - - Reverse proxy
 - - Brannmur (ufw) [x]
 
+- Brukerstøtte
+- - ### Hensikt
+
 - Annet: ... 
 
-### Total utviklingstid:  17 timer...
+### Total utviklingstid:  20 timer...
 
 ## Kommunikasjonsplan
 

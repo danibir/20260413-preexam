@@ -14,6 +14,7 @@ const setLocals = (req, res, next) => {
     res.locals.isAdmin = false
     res.locals.loggedIn = false
     res.locals.title = "Side..."
+    req.user = NaN
     next()
 }
 

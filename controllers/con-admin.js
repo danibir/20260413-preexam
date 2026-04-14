@@ -1,5 +1,6 @@
-
 const Report = require('../models/mod-report')
+const Signkey = require('../models/mod-signkey')
+const han = require('../handlers/han-mod')
 const cons = require('../js/constant')
 
 
@@ -7,7 +8,6 @@ const index_get = async (req, res) => {
     try {
         const query = req.query
         let querytags = query["tags[]"]
-        console.log(query)
         if (!querytags){
             querytags = cons.reportTags.filter(item => item !== "søppelpost")
         }
@@ -37,7 +37,18 @@ const index_get = async (req, res) => {
         return res.status(500).render('error', { error: "Server error" })
     }
 }
+const createkey_get = (req, res) => {
+    res.render('keycreate')
+}
+const createkey_post = async (req, res) => {
+    const username = req.body.username
+    const isAdmin = req.body.isAdmin == "on"
+    const key = await han.generateKey(username, isAdmin, req.user)
+    res.render('keygen', { key: key, user: username })
+}
 
 module.exports = {
-    index_get
+    index_get,
+    createkey_get,
+    createkey_post
 }

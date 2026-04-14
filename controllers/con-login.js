@@ -1,5 +1,7 @@
 //import
 const User = require('../models/mod-user')
+const Signkey = require('../models/mod-signkey')
+const han = require('../handlers/han-mod')
 const jwt = require("jsonwebtoken")
 
 //login page
@@ -33,19 +35,10 @@ const signup_post = async (req, res) => {
     const password = req.body.password
     const key = req.body.key
     try {
-        console.log(!(await User.userExists(username)))
-        if (key === process.env.authKey || key === process.env.adminKey) 
-        if (!(await User.userExists(username))) {
-            const userObj = {
-                username: username,
-                password: password,
-                isAdmin: (key === process.env.adminKey)
-            }
-            const user = new User(userObj)
-            await user.save()
-            const login = await login_perform(res, username, password)
-            if (login) return res.redirect('/')
-        }
+        const signup = await han.signup(username, password, key)
+        if (!signup) return res.redirect('./sign-up')
+        const login = await login_perform(res, username, password)
+        if (login) return res.redirect('/')
         res.redirect('./sign-up')
     } catch(err) {
         console.log(`Sign-up post error: ${err}`)
@@ -63,12 +56,13 @@ const logout_post = (req, res) => {
 //login handler
 const login_perform = async (res, username, password) => {
     try {
-        const login = await User.login(username, password)
-        if (!login) return
+        const login = await han.login(username, password)
+        if (!login) return console.log('incredential fails')
 
         const token = jwt.sign({ username }, "my_jwt_secret_for_now", { expiresIn: '120m' })
         res.cookie('user', token, { httpOnly: true, sameSite: 'strict'})
         console.log('login success')
+        console.log(login)
         return login
     } catch (err) {
         throw new Error(`Login perform error: ${err}`)

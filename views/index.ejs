@@ -3,6 +3,7 @@
 <h2>User: <%= name %></h2>
 <% if (isAdmin) { %>
     <a href="/admin">Admin page</a>
+    <a href="/admin/key/create">Make key</a>
 <% } else { %>
     <a href="/report/create">Report case</a>
 <% } %>

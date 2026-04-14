@@ -1,0 +1,11 @@
+<%- include('./partials/head') %>
+<h1>Key create</h1>
+<form action="/admin/key/create" method="post">
+    <label for="username">Brukernavn</label>
+    <input type="text" name="username" id="username">
+    <br>
+    <label for="isAdmin">Administator:                                                                                                                                                  </label>
+    <input type="checkbox" name="isAdmin" id="isAdmin">
+    <br>
+    <button>Generer</button>
+</form>
