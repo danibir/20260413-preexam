@@ -56,7 +56,7 @@ userSchema.statics.userExists = async(username) => {
     const user = await User.findOne({ username: name })
     if(!user) return
 
-    return !!user
+    return user
 }
 
 //export

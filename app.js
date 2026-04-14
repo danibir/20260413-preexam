@@ -46,6 +46,9 @@ db.connectToMongoDb()
     app.use('/report', router_report)
     app.use('/admin', router_admin)
     
+    app.use((req, res) => {
+        res.render('404')
+    })
     
     app.listen(3000, () => {
         console.log('Server is running on port 3000 and on', os.hostname())
