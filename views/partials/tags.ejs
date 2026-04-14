@@ -1,0 +1,6 @@
+
+<% for (tag of tags) { %>
+    <input type="checkbox" name="tags[]" value="<%= tag %>" id="<%= tag %>" <% if (pretags.includes(tag)) { %> checked <% } %>>
+    <label for="<%= tag %>"><%= tag %></label>
+    <br>
+<% } %>

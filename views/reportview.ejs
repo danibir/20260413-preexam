@@ -1,6 +1,8 @@
 <%- include('./partials/head') %>
 <h1>Report view</h1>
 
+<a href="/report/edit/<%= report._id %>">Edit</a>
+
 <div>
     <h2><%= report.title %></h2>
     <p><%= report.content %></p>

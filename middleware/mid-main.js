@@ -13,12 +13,13 @@ const setLocals = (req, res, next) => {
     res.locals.name = "NaN"
     res.locals.isAdmin = false
     res.locals.loggedIn = false
+    res.locals.title = "Side..."
     next()
 }
 
 const dbReject503 = (req, res, next) => {
     if (!req.isDBConnected){
-        return han.renderErrorPage(res, 503, "Service unavailable: database is unavailable, come back later.")
+        return res.status(503).render("error", { error: "Service unavailable: database is unavailable." })
     }
     next()
 }

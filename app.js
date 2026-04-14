@@ -48,7 +48,7 @@ db.connectToMongoDb()
     app.use('/admin', router_admin)
     
     app.use((req, res) => {
-        res.render('404')
+        res.status(404).render('error', { error: "404 - Page not found" })
     })
     
     app.listen(3000, () => {

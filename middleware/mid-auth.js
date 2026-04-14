@@ -27,7 +27,7 @@ const authAdmin = async (req, res, next) => {
     const user = await User.userExists(username)
     console.log(user)
     if (!user || user.isAdmin == false) {
-        return res.render('403')
+        return res.status('error', { error: "403 - Forbidden" })
     }
 
     next()

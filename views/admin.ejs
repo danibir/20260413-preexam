@@ -1,5 +1,11 @@
 <%- include('./partials/head') %>
 <h1>Admin</h1>
+<br>
+<form action="/admin" method="get">
+    <%- include('./partials/tags', { tags, pretags }) %>
+    <button>Filtrer</button>
+</form>
+<br>
 <% for( report of reports ) { %>
     <a href="/report/view/<%= report._id %>"><%= report.title %></a>
 <% } %>
