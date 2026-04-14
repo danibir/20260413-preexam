@@ -9,8 +9,10 @@ const dbSetStatus = (status) => (req, res, next) => {
     next()
 }
 
-const checkUserCookie = (req, res, next) => {
-    const token = req.cookie.user
+const setLocals = (req, res, next) => {
+    res.locals.name = "NaN"
+    res.locals.isAdmin = false
+    res.locals.loggedIn = false
     next()
 }
 
@@ -23,6 +25,6 @@ const dbReject503 = (req, res, next) => {
 
 module.exports = {
     dbSetStatus,
-    checkUserCookie,
+    setLocals,
     dbReject503
 }

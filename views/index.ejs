@@ -1,3 +1,9 @@
 <%- include('./partials/head') %>
-<%= name %>
 <h1>Index</h1>
+<h2>User: <%= name %></h2>
+<% if (isAdmin) { %>
+    <a href="/admin">Admin page</a>
+<% } %>
+<form action="/login/log-out" method="post">
+    <button>Log out</button>
+</form>

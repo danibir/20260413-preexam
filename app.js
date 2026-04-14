@@ -27,6 +27,7 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(morgan('dev'))
 app.use(cookieParser())
+app.use(mid_main.setLocals)
 
 //Connecting to db and starting server
 
