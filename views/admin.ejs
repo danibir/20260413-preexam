@@ -3,12 +3,14 @@
     <h1>Admin</h1>
     <br>
     <div class="flexrow">
-        <form action="/admin" method="get">
-            <%- include('./partials/tags', { tags, pretags }) %>
-            <br>
-            <button class="mybutton">Filtrer</button>
-        </form>
-        <br>
+        <section class="filtersection">
+            <h2>Filter (avviksmeldinger siden siste måned)</h2>
+            <form action="/admin" method="get">
+                <%- include('./partials/tags', { tags, pretags, tagcount }) %>
+                <br>
+                <button class="mybutton">Filtrer</button>
+            </form>
+        </section>
         <section>
             <% for( let i = 0; i < reports.length; i++) { %>
                 <% 

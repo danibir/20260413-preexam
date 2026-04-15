@@ -2,12 +2,18 @@
 <div class="bigbox">
     <h1>Report edit</h1>
 
-    <div>
-        <h2><%= report.title %></h2>
-        <p><%= report.content %></p>
-    </div>
-
     <form action="/report/edit/<%= report._id %>" method="post">
+        <label for="title">Tittel:</label>
+        <br>
+        <input type="text" name="title" id="title" value="<%= report.title %>" maxlength="">
+        <br>
+        <label for="content">Innhold:</label>
+        <br>
+        <textarea name="content" id="content"><%= report.content %></textarea>
+        <br>
+        <br>
+        <label for="status">Status:</label>
+        <br>
         <label for="ledig">Ledig</label>
         <input type="radio" name="status" value="0" id="ledig" <% if (report.status == 0) { %>checked<% } %>>
         <label for="underHaandtering">Under håndtering</label>
@@ -16,11 +22,16 @@
         <input type="radio" name="status" value="2" id="loest" <% if (report.status == 2) { %>checked<% } %>>
         <br>
         <br>
-        <%- include('./partials/tags', { tags, pretags: report.tags }) %>
+        <label for="filter">Filter:</label>
+        <br>
+        <%- include('./partials/tags', { tags, pretags: report.tags, tagcount: NaN }) %>
+        <br>
+        <label for="note">Oppdatingsnotat</label>
         <br>
         <textarea name="note" id="note"></textarea>
         <br>
-        <button>Lagre</button>
+        <br>
+        <button class="mybutton">Lagre</button>
     </form>
 </div>
 <%- include('./partials/foot') %>

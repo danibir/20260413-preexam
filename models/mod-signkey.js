@@ -3,6 +3,7 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 const hashUsername = require('../util/hashname')
+const db = require('../handlers/han-db.js')
 
 const userKeySchema = new Schema({
     username: { 
@@ -32,5 +33,5 @@ userKeySchema.pre('save', async function () {
 
 
 
-const Signkey = mongoose.model('Signkey', userKeySchema, 'signup-keys')
+const Signkey = db.mainDb.model('Signkey', userKeySchema, 'signup-keys')
 module.exports = Signkey

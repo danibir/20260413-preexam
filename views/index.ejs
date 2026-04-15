@@ -4,14 +4,14 @@
     <h1>Hjemmeside</h1>
     <h2>Bruker: <%= name %></h2>
     <% if (isAdmin) { %>
-        <form action="/admin"><button class="mybutton">Admin page</button></form>
-        <form action="/admin/key/create"><button class="mybutton">Make key</button></form>
+        <form action="/admin"><button class="mybutton">Administrator side</button></form>
+        <form action="/admin/key/create"><button class="mybutton">Generer registreringsnøkkel</button></form>
     <% } else { %>
-        <form action="/report/create"><button class="mybutton">Report case</button></form>
+        <form action="/report/create"><button class="mybutton">Lag avviksmelding</button></form>
         <a href="/report/create">Report case</a>
     <% } %>
     <form action="/login/log-out" method="post">
-        <button class="mybutton">Log out</button>
+        <button class="mybutton">Logg ut</button>
     </form>
 </div>
 

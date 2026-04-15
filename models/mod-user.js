@@ -2,6 +2,7 @@ const argon2 = require('argon2')
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 const hashUsername = require('../util/hashname')
+const db = require('../handlers/han-db.js')
 
 //define schema
 const userSchema = new Schema({
@@ -36,5 +37,5 @@ userSchema.pre('save', async function () {
 
 
 //export
-const User = mongoose.model('User', userSchema, 'users')
+const User = db.mainDb.model('User', userSchema, 'users')
 module.exports = User

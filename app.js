@@ -4,8 +4,11 @@ const express = require('express')
 const morgan = require('morgan')
 const cookieParser = require('cookie-parser')
 const os = require('os')
+const path = require('path')
 const env = require("dotenv")
 env.config()
+
+require('./cron/cleantrash')
 
 const mid_main = require('./middleware/mid-main')
 const mid_auth = require('./middleware/mid-auth')
@@ -23,7 +26,7 @@ const app = express()
 
 app.set('view engine', 'ejs')
 
-app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }))
 app.use(morgan('dev'))
 app.use(cookieParser())
@@ -31,14 +34,17 @@ app.use(mid_main.setLocals)
 
 //Connecting to db and starting server
 
-db.connectToMongoDb()
+Promise.all([
+    db.mainDb.asPromise(),
+    db.reportDb.asPromise()
+])
 .then(()=>{
     mid_main.dbSetStatus(true)
     console.log('Database connection success.')
 })
-.catch(()=>{
+.catch((err)=>{
     mid_main.dbSetStatus(false)
-    console.log('Database connection failure.')
+    console.log(`Database connection failure. Error: ${err}`)
 })
 .finally(()=>{
     app.use(mid_auth.auth)

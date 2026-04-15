@@ -8,6 +8,9 @@ const index_get = async (req, res) => {
     try {
         const query = req.query
         let querytags = query["tags[]"]
+
+        
+
         if (!querytags){
             querytags = cons.reportTags.filter(item => item !== "søppelpost")
         }
@@ -15,6 +18,21 @@ const index_get = async (req, res) => {
             {tags: { $in: querytags } },   
             {tags: { $size: 0 } }
         ]})
+
+        const oneMonthAgo = new Date()
+        oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1)
+        const tagcount = Object.fromEntries(cons.reportTags.map(t => [t, 0]))
+        for (const report of reports) {
+            console.log(!report.createdAt)
+            console.log(new Date(report.createdAt) < oneMonthAgo)
+            if (!report.createdAt || new Date(report.createdAt) < oneMonthAgo) {
+                for (const tag of report.tags) {
+                    if (tagcount[tag] !== undefined) {
+                        tagcount[tag]++
+                    }
+                }
+            }
+        }
         if (!querytags.includes('søppelpost')) reports = reports.filter(item => !item.tags.includes('søppelpost'))
         if (querytags.includes('søppelpost')) reports = reports.filter(item => item.tags.includes('søppelpost'))
 
@@ -38,7 +56,7 @@ const index_get = async (req, res) => {
             const maxlength = 12
             if (report.title.length > maxlength) report.title = `${report.title.slice(0, maxlength)}...`   
         }
-        res.render('admin', { reports, tags: cons.reportTags, pretags: querytags })
+        res.render('admin', { reports, tags: cons.reportTags, pretags: querytags, tagcount })
     } catch (err) {
         console.log(err)
         return res.status(500).render('error', { error: "Server error" })

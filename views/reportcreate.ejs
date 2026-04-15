@@ -3,26 +3,28 @@
     <h1>Report create</h1>
 
     <form action="./create" method="post">
-        <label for="title">Tittel</label>
+        <label for="title">Tittel:</label>
         <br>
         <input type="text" name="title" id="title" maxlength="30">
 
         <br>
         <br>
 
-        <label for="content">Innhold</label>
+        <label for="content">Innhold:</label>
         <br>
         <textarea name="content" id="content"></textarea>
 
         <br>
         <br>
 
-        <%- include('./partials/tags', { tags, pretags: [] }) %>
+        <label for="filter">Filter:</label>
+        <br>
+        <%- include('./partials/tags', { tags, pretags: [], tagcount: NaN }) %>
 
         <br>
         <br>
 
-        <button>Publiser</button>
+        <button class="mybutton">Publiser</button>
     </form>
 </div>
 <%- include('./partials/foot') %>

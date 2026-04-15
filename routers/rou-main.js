@@ -11,7 +11,7 @@ const m_auth = require('../middleware/mid-auth')
 
 //routing
 
-router.get('/', m_auth.auth, c_main.index_get)
+router.get('/', m_auth.authRestrain, c_main.index_get)
 router.get('/faq', c_main.faq_get)
 
 //export

@@ -1,5 +1,83 @@
 <%- include('./partials/head') %>
+
 <div class="bigbox">
     <h1>FAQ</h1>
+
+
+    <h2>Om nettsiden</h2>
+
+    <h3>Hva er denne siden til?</h3>
+    <p>Denne nettsiden lar ansatte sende inn avviksmeldinger anonymt til administratorer. Målet er å gjøre det enklere å rapportere hendelser, brudd på rutiner eller andre forhold uten frykt for represalier.</p>
+
+    <h3>Hvem kan bruke systemet?</h3>
+    <p>Systemet er laget for ansatte i organisasjonen. Administratorer har egne verktøy for å håndtere avviksmeldinger.</p>
+
+    <h3>Hvor lagres dataene?</h3>
+    <p>Data lagres i en MongoDB‑database på en separat server. Tilkoblingen er sikret gjennom UFW‑regler og segmentert nettverk.</p>
+
+    <h3>Hvorfor må jeg bruke en registreringsnøkkel?</h3>
+    <p>Registreringsnøkler hindrer spam‑kontoer og sikrer at kun autoriserte ansatte får tilgang til systemet.</p>
+
+
+    <h2>Innlogging og konto</h2>
+
+    <h3>Hvordan logger jeg meg inn?</h3>
+    <p>Du må ha en bruker registrert i systemet. Hvis du ikke har konto, må du få en registreringsnøkkel fra en administrator.</p>
+
+    <h3>Hva gjør jeg hvis jeg har glemt passordet?</h3>
+    <p>Kontakt en administrator. Av sikkerhetsgrunner finnes det ikke en automatisk "glemt passord"‑funksjon.</p>
+
+    <h3>Kan administratorer opprette andre administratorer?</h3>
+    <p>Nei. Administratorer kan generere nøkler, men ikke direkte opprette nye administratorer uten riktig autorisasjon.</p>
+
+
+    <h2>Avviksmeldinger</h2>
+
+    <h3>Er avviksmeldingene jeg publiserer anonyme?</h3>
+    <p>Ja. Systemet lagrer ikke brukernavn, IP‑adresse eller annen identifiserende informasjon sammen med avviksmeldingen.</p>
+
+    <h3>Hvem kan se avviksmeldingene?</h3>
+    <p>Kun administratorer har tilgang til å lese og håndtere avviksmeldinger.</p>
+
+    <h3>Kan administratorer spore hvem som sendte en melding?</h3>
+    <p>Nei. Systemet er designet for å beskytte anonymiteten din. Administratorer får kun se innholdet i meldingen.</p>
+
+    <h3>Kan jeg redigere eller slette en avviksmelding etter at den er sendt?</h3>
+    <p>Nei. Avviksmeldinger kan ikke redigeres eller slettes av brukere etter innsending.</p>
+
+    <h3>Hva brukes etiketter til?</h3>
+    <p>Administratorer kan merke avviksmeldinger med etiketter som <em>ulykke</em>, <em>brudd på rutine</em> eller <em>spampost</em> for å sortere og kategorisere dem.</p>
+
+    <h3>Kan administratorer slette avviksmeldinger?</h3>
+    <p>Nei. Avviksmeldinger lagres permanent for dokumentasjon og sporbarhet. Spam blir slettet etter en måned etter å ha blitt merket som søppel.</p>
+
+
+    <h2>Sikkerhet og drift</h2>
+
+    <h3>Hvordan sikres systemet?</h3>
+    <p>Systemet bruker hashing av passord, hashing av brukernavn, UFW‑brannmur, reverse proxy via Nginx og tilgangskontroll for administratorfunksjoner.</p>
+
+    <h3>Hva skjer hvis serveren går ned?</h3>
+    <p>Systemet kjører under PM2, som automatisk restarter tjenesten ved feil. Det finnes også rutiner for sikkerhetskopiering av databasen.</p>
+
+    <h3>Er dataene mine trygge?</h3>
+    <p>Ja. Det lagres kun nødvendig informasjon, og all sensitiv data er sikret gjennom moderne metoder som hashing og nettverkssegmentering.</p>
+
+    <h3>Hva gjør jeg hvis jeg oppdager en feil på nettsiden?</h3>
+    <p>Rapporter feilen til administrator eller utvikler. Kritiske feil blir prioritert og håndtert så raskt som mulig.</p>
+
+
+    <h2>Bruk og support</h2>
+
+    <h3>Hvordan får jeg hjelp?</h3>
+    <p>Ta kontakt med administrator eller ansvarlig utvikler. Systemet er dokumentert for å redusere behovet for direkte support.</p>
+
+    <h3>Hvor ofte oppdateres systemet?</h3>
+    <p>Oppdateringer skjer ved behov. Endringer blir rullet ut via Git og PM2, og dokumenteres i prosjektets GitHub‑repo.</p>
+
+    <h3>Kan jeg foreslå nye funksjoner?</h3>
+    <p>Ja. Ta kontakt med administrator eller utvikler for å diskutere mulige forbedringer.</p>
+
 </div>
+
 <%- include('./partials/foot') %>

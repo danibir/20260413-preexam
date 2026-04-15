@@ -53,6 +53,8 @@ const edit_get = async (req, res) => {
 const edit_post = async (req, res) => {
     const id = req.params.id
 
+    const title = req.body.title
+    const content = req.body.content
     const status = req.body.status
     const tags = req.body.tags
     let note = req.body.note
@@ -67,6 +69,8 @@ const edit_post = async (req, res) => {
             const newNote = `${note}\r\n\r\n- ${res.locals.name}`
             report.notes.push(newNote)
         }
+        report.title = title
+        report.content = content
         report.status = status
         report.tags = tags
         if (!report.contributors.includes(contributor)) report.contributors.push(contributor)

@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 const argon2 = require('argon2')
 const Schema = mongoose.Schema
+const db = require('../handlers/han-db.js')
 
 //define schema
 const reportSchema = new Schema({
@@ -28,7 +29,10 @@ const reportSchema = new Schema({
         type: Array,
         default: []
     }
-})
+}, { 
+    timestamps: true 
+}
+)
 
-const Report = mongoose.model('Report', reportSchema, 'reports')
+const Report = db.reportDb.model('Report', reportSchema, 'reports')
 module.exports = Report

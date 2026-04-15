@@ -37,6 +37,8 @@ const authRestrain = (req, res, next) => {
     const token = req.cookies?.user
     console.log('authrestrain')
     if (!token) return res.redirect('login')
+    console.log('passed')
+    next('')
 }
 
 const reverseAuth = (req, res, next) => {
