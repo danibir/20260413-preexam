@@ -1,13 +1,20 @@
-<nav>
-    <% if (!loggedIn) { %>
-        <a href="/login/login">login</a>
-        <a href="/login/sign-up">sign-up</a>
-    <% } else { %>
-        <a href="/">Home</a>
-        <% if (isAdmin) { %>
-            <a href="/admin">Admin</a>
+<br>
+<nav class="flexrow">
+    <ul>
+        <% if (!loggedIn) { %>
+            <li><a href="/login/login">Logg in</a></li>
+            <li><a href="/login/sign-up">Registrer</a></li>
         <% } else { %>
-            <a href="/report/create">report-create</a>
+            <li><a href="/">Hjem</a></li>
+            <% if (isAdmin) { %>
+                <li><a href="/admin">Administrator side</a></li>
+            <% } else { %>
+                <li><a href="/report/create">Lag avviksmelding</a></li>
+            <% } %>
         <% } %>
-    <% } %>
+        <li><a href="/faq">FAQ</a></li>
+    </ul>
 </nav>
+
+<div class="line"></div>
+<br>

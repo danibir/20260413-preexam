@@ -30,9 +30,15 @@ const auth = async (req, res, next) => {
         }
     } else {
         console.log('no token auth')
-        return res.redirect("/login/login")
+        next()
     }
 }
+const authRestrain = (req, res, next) => {
+    const token = req.cookies?.user
+    console.log('authrestrain')
+    if (!token) return res.redirect('login')
+}
+
 const reverseAuth = (req, res, next) => {
     const token = req.cookies?.user
     if (token) return res.redirect('/')
@@ -49,6 +55,7 @@ const authAdmin = async (req, res, next) => {
 
 module.exports = {
     auth,
+    authRestrain,
     reverseAuth,
     authAdmin
 }

@@ -9,7 +9,8 @@ Dette er en norsk webapplikasjon der brukere(ansatte) kan anmelde avviksmeldinge
 ## Funksjonelle krav
 
 - Brukere kan å registrere, logge inn, administere og slette egen konto
-- - Registrering krever en nøkkel
+- - Registrering krever en nøkkel fra en administrator
+- Administratorer kan legge til sign-up nøkkler
 - Brukere kan publisere avviksmeldinger(anmeldelser) annonymt 
 - Administratorer kan lese og håndtere avviksmeldingene
 - - Endre status på avviksmeldinger (ledig, under håndtering, løst)
@@ -21,11 +22,11 @@ Dette er en norsk webapplikasjon der brukere(ansatte) kan anmelde avviksmeldinge
 
 ## Driftplan
 
-| Name          | Ip Address    | Role                  |
-|---------------|---------------|-----------------------|
-| preexam-dev   | 10.12.15.80   | Development server    |
-| preexam-pub   | 10.12.15.81   | Production server     |
-| preexam-db    | 10.12.15.82   | Database server       |
+| Name          | Ip Address    | Role                  | DNS                       |
+|---------------|---------------|-----------------------|---------------------------|
+| preexam-dev   | 10.12.15.80   | Development server    | -                         |
+| preexam-pub   | 10.12.15.81   | Production server     | preexam.borg.ikt-fag.no   |
+| preexam-db    | 10.12.15.82   | Database server       | -                         |
 
 Løsningen består av tre maskiner. (...)
 
@@ -94,8 +95,9 @@ Tiltak:
 - - Reverse proxy
 - - Brannmur (ufw) [x]
 
-- Brukerstøtte
+- Brukerstøtte: 2 timer
 - - ### Hensikt
+- - 
 
 - Annet: ... 
 

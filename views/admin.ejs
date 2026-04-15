@@ -1,11 +1,29 @@
 <%- include('./partials/head') %>
-<h1>Admin</h1>
-<br>
-<form action="/admin" method="get">
-    <%- include('./partials/tags', { tags, pretags }) %>
-    <button>Filtrer</button>
-</form>
-<br>
-<% for( report of reports ) { %>
-    <a href="/report/view/<%= report._id %>"><%= report.title %></a>
-<% } %>
+<div class="bigbox">
+    <h1>Admin</h1>
+    <br>
+    <div class="flexrow">
+        <form action="/admin" method="get">
+            <%- include('./partials/tags', { tags, pretags }) %>
+            <br>
+            <button class="mybutton">Filtrer</button>
+        </form>
+        <br>
+        <section>
+            <% for( let i = 0; i < reports.length; i++) { %>
+                <% 
+                const width = 3
+                const report = reports[i] 
+                if (i % width == 0) { %>
+                    <section class="flexrow flexcenter">
+                <% } %>
+                <a href="/report/view/<%= report._id %>" class="report _<%= report.status %>"><%= report.title %></a>
+                <% if (i % width == width - 1 || i == reports.length - 1) { %>
+                    </section>
+                <% } %>
+            <% } %>
+        </section>
+    </div>
+</div>
+
+<%- include('./partials/foot') %>

@@ -41,9 +41,10 @@ db.connectToMongoDb()
     console.log('Database connection failure.')
 })
 .finally(()=>{
-    app.use('/login', router_login)
     app.use(mid_auth.auth)
+    app.use('/login', router_login)
     app.use('/', router_main) 
+    app.use(mid_auth.authRestrain)
     app.use('/report', router_report)
     app.use('/admin', router_admin)
     

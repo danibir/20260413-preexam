@@ -1,19 +1,28 @@
 <%- include('./partials/head') %>
-<h1>Report create</h1>
+<div class="bigbox">
+    <h1>Report create</h1>
 
-<form action="./create" method="post">
-    <label for="title">Tittel</label>
-    <input type="text" name="title" id="title">
+    <form action="./create" method="post">
+        <label for="title">Tittel</label>
+        <br>
+        <input type="text" name="title" id="title" maxlength="30">
 
-    <br>
+        <br>
+        <br>
 
-    <label for="content">Innhold</label>
-    <textarea name="content" id="content"></textarea>
+        <label for="content">Innhold</label>
+        <br>
+        <textarea name="content" id="content"></textarea>
 
-    <br>
+        <br>
+        <br>
 
-    <br>
-    <%- include('./partials/tags', { tags, pretags: [] }) %>
+        <%- include('./partials/tags', { tags, pretags: [] }) %>
 
-    <button>Publiser</button>
-</form>
+        <br>
+        <br>
+
+        <button>Publiser</button>
+    </form>
+</div>
+<%- include('./partials/foot') %>

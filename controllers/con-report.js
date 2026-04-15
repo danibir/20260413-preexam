@@ -29,6 +29,12 @@ const view_get = async (req, res) => {
     const id = req.params.id
     try {
         const report = await Report.findById(id)
+        
+        let status = "Ledig"
+        if (report.status == 1) status = "Under behandling"
+        if (report.status == 2) status = "Løst"
+        report.statusReal = status   
+        
         res.render('reportview', { report, tags: cons.reportTags })
     } catch (err) {
         return res.status(500).render('error', { error: "500 - Server error"})

@@ -1,9 +1,14 @@
 <%- include('./partials/head') %>
-<h1>Login</h1>
-<%- include('./partials/userform', { 
-    form: { action: "./login", method: "post", buttonLabel: "Logg inn" },
-    formFields: [
-    {name: "username", display: "Brukernavn", type: "text"}, 
-    {name: "password", display: "Passord", type: "password"}
-] 
-}) %>
+
+<div class="bigbox">
+    <h1>Login</h1>
+    <%- include('./partials/userform', { 
+        form: { action: "./login", method: "post", buttonLabel: "Logg inn" },
+        formFields: [
+        {name: "username", display: "Brukernavn", type: "text"}, 
+        {name: "password", display: "Passord", type: "password"}
+    ] 
+    }) %>
+</div>
+
+<%- include('./partials/foot') %>

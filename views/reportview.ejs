@@ -1,16 +1,35 @@
 <%- include('./partials/head') %>
-<h1>Report view</h1>
+<div class="bigbox">
+    <h1>Report view</h1>
 
-<a href="/report/edit/<%= report._id %>">Edit</a>
+    <a href="/report/edit/<%= report._id %>">Edit</a>
 
-<div>
-    <h2><%= report.title %></h2>
-    <h3><%= report.status %></h3>
-    <p><%- report.content.replace(/\r?\n/g, '<br>') %></p>
-    <% for(tag of report.tags) { %>
-        <h6><%= tag %></h6>
-    <% } %>
-    <% for(note of report.notes) { %>
-        <p><%- note.replace(/\r?\n/g, '<br>') %></p>
-    <% } %>
+    <div>
+        <h2><%= report.title %></h2>
+        <div class="flexrow flexcenter">
+            <h3><%= report.statusReal %></h3>
+            <div class="ball _<%= report.status%>"></div>
+        </div>
+        <p><%- report.content.replace(/\r?\n/g, '<br>') %></p>
+        <div>
+        <section>
+            <% for( let i = 0; i < report.tags.length; i++) { %>
+                <% 
+                const width = 3
+                const tag = report.tags[i] 
+                if (i % width == 0) { %>
+                    <section class="flexrow flexcenter">
+                <% } %>
+                <h6 class="tag"><%= tag %></h6>
+                <% if (i % width == width - 1 || i == report.tags.length - 1) { %>
+                    </section>
+                <% } %>
+            <% } %>
+        </section>
+        </div>
+        <% for(note of report.notes) { %>
+            <p class="note"><%- note.replace(/\r?\n/g, '<br>') %></p>
+        <% } %>
+    </div>
 </div>
+<%- include('./partials/foot') %>

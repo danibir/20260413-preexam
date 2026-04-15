@@ -1,9 +1,11 @@
 <!--form: { action: "/", method: "post", buttonLabel: "Logg inn" }-->
 <!--formFields: [{name: "username", display: "Navn", type: "text"}, {name: "password", display: "Passord", type: "password"}]-->
-<form action="<%= form.action %>" method="<%= form.method %>">
+<form action="<%= form.action %>" method="<%= form.method %>" class="flexcol flexcenter">
     <% for( field of formFields ) { %>
         <label for="<%= field.name %>"><%= field.display %></label>
         <input type="<%= field.type %>" id="<%= field.name %>" name="<%= field.name %>" required>
+        <br>
     <% } %>
-    <button><%= form.buttonLabel %></button>
+    <br>
+    <button class="mybutton"><%= form.buttonLabel %></button>
 </form>

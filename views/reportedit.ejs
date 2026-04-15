@@ -1,22 +1,26 @@
 <%- include('./partials/head') %>
-<h1>Report edit</h1>
+<div class="bigbox">
+    <h1>Report edit</h1>
 
-<div>
-    <h2><%= report.title %></h2>
-    <p><%= report.content %></p>
+    <div>
+        <h2><%= report.title %></h2>
+        <p><%= report.content %></p>
+    </div>
+
+    <form action="/report/edit/<%= report._id %>" method="post">
+        <label for="ledig">Ledig</label>
+        <input type="radio" name="status" value="0" id="ledig" <% if (report.status == 0) { %>checked<% } %>>
+        <label for="underHaandtering">Under håndtering</label>
+        <input type="radio" name="status" value="1" id="underHaandtering" <% if (report.status == 1) { %>checked<% } %>>
+        <label for="loest">Løst</label>
+        <input type="radio" name="status" value="2" id="loest" <% if (report.status == 2) { %>checked<% } %>>
+        <br>
+        <br>
+        <%- include('./partials/tags', { tags, pretags: report.tags }) %>
+        <br>
+        <textarea name="note" id="note"></textarea>
+        <br>
+        <button>Lagre</button>
+    </form>
 </div>
-
-<form action="/report/edit/<%= report._id %>" method="post">
-    <label for="ledig">Ledig</label>
-    <input type="radio" name="status" value="0" id="ledig" <% if (report.status == 0) { %>checked<% } %>>
-    <label for="underHaandtering">Under håndtering</label>
-    <input type="radio" name="status" value="1" id="underHaandtering" <% if (report.status == 1) { %>checked<% } %>>
-    <label for="loest">Løst</label>
-    <input type="radio" name="status" value="2" id="loest" <% if (report.status == 2) { %>checked<% } %>>
-    <br>
-    <%- include('./partials/tags', { tags, pretags: report.tags }) %>
-    <br>
-    <textarea name="note" id="note"></textarea>
-    <br>
-    <button>Lagre</button>
-</form>
+<%- include('./partials/foot') %>

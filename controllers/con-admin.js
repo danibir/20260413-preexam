@@ -24,13 +24,20 @@ const index_get = async (req, res) => {
             if (!aHasTags && bHasTags) return 1
             if (aHasTags && !bHasTags) return -1
 
+            if (itemA.status != itemB.status) return itemA.status - itemB.status
+
             const aImportant = aHasTags && itemA.tags.includes("haster")
             const bImportant = bHasTags && itemB.tags.includes("haster")
             if (aImportant && !bImportant) return -1
             if (!aImportant && bImportant) return 1
 
-            return itemA.status - itemB.status
+            return 0
         })
+        for(const report of reports)
+        {
+            const maxlength = 12
+            if (report.title.length > maxlength) report.title = `${report.title.slice(0, maxlength)}...`   
+        }
         res.render('admin', { reports, tags: cons.reportTags, pretags: querytags })
     } catch (err) {
         console.log(err)

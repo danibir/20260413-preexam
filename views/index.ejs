@@ -1,12 +1,18 @@
 <%- include('./partials/head') %>
-<h1>Index</h1>
-<h2>User: <%= name %></h2>
-<% if (isAdmin) { %>
-    <a href="/admin">Admin page</a>
-    <a href="/admin/key/create">Make key</a>
-<% } else { %>
-    <a href="/report/create">Report case</a>
-<% } %>
-<form action="/login/log-out" method="post">
-    <button>Log out</button>
-</form>
+
+<div class="bigbox">
+    <h1>Hjemmeside</h1>
+    <h2>Bruker: <%= name %></h2>
+    <% if (isAdmin) { %>
+        <form action="/admin"><button class="mybutton">Admin page</button></form>
+        <form action="/admin/key/create"><button class="mybutton">Make key</button></form>
+    <% } else { %>
+        <form action="/report/create"><button class="mybutton">Report case</button></form>
+        <a href="/report/create">Report case</a>
+    <% } %>
+    <form action="/login/log-out" method="post">
+        <button class="mybutton">Log out</button>
+    </form>
+</div>
+
+<%- include('./partials/foot') %>

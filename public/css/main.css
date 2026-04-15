@@ -1,4 +1,133 @@
 body {
-    background-color: tan;
+    background-color: rgb(152, 183, 202);
     color: black;
+}
+button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: inherit;
+}
+nav {
+    width: 100%;
+}
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+}
+nav ul li {
+    background-color: white;
+    margin: 0.5vw;
+    height: 2vw;
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+nav ul li a {
+    color: black;
+    text-decoration: none;
+    font-size: x-large;
+}
+p {
+    overflow-wrap: break-word;
+}
+
+.flexcol {
+    display: flex;
+    flex-direction: column;
+}
+.flexrow {
+    display: flex;
+    flex-direction: row;
+}
+.flexcenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.line {
+    background-color: white;
+    display: flex;
+    width: 100%;
+    border-radius: 5px;
+    height: 20px;
+}
+.bigbox {
+    padding: 0vw;
+    background-color: white;
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+}
+.mybutton {
+    background-color: whitesmoke;
+    padding: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-style: solid;
+    border-radius: 2px;
+    border-width: 2px;
+    border-color: lightgray;
+}
+.mybutton:hover {
+    background-color: white;
+    border-color: whitesmoke;
+}
+.mybutton:active {
+    background-color: gainsboro;
+    border-color: gray;
+}
+.report {
+    background-color: whitesmoke;
+    margin: 5px;
+    width: 4vw;
+    color: black;
+    text-decoration: none;
+    border-style: double;
+    border-radius: 2px;
+    border-width: 3px;
+    border-color: lightgray;
+}
+.ball {
+    width: 10px;
+    height: 10px;
+    border-radius: 25px;
+    margin: 5px;
+}
+._0{
+    border-color: rgb(202, 238, 144);
+    background-color: rgb(232, 244, 167);
+}
+._1{
+    border-color: rgb(185, 235, 192);
+    background-color: rgb(108, 232, 172);
+}
+._2{
+    border-color: rgb(90, 114, 193);
+    background-color: rgb(129, 163, 205);
+}
+.tag {
+    background-color: azure;
+    border-color: lightblue;
+    border-radius: 3px;
+    border-style: solid;
+    height: 15px;
+    padding: 2px;
+    margin: 5px;
+}
+.note {
+    background-color: rgb(238, 238, 128);
+    padding: 1vw;
+    margin: 1vw;
 }
